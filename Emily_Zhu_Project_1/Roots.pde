@@ -1,24 +1,23 @@
 void roots(float e, float r) {
-  e *= 1;
-  r *= 0.2; //stroke
-  
-  if (e > 29) {
+  e *= .8;
+  r *= 0.8; //stroke
+
+  if (e > 10) {
     strokeWeight(r);
+    stroke(0);
     pushMatrix();  
-    rotate(PI);
-    line(0, 0, 0, e*2);
-    //translate(0, -e);
-    branch(e,r);
-    popMatrix();           
-    
-    pushMatrix();
-    rotate(PI);
-    strokeWeight(r);
-    line(0, 0, 0, e/2);
-    //translate(0, -e);
-    branch(e,r);
+    rotate(0.4); //rotates the matrix so the roots draw at an angle
+    line(0, 0, 0, e); //draws the initial line
+    translate(0, e); //moves the line over for the next root to draw
+    roots(e, r); //redraws the root
     popMatrix();
 
-
+    pushMatrix();
+    rotate(-0.4);
+    strokeWeight(r);
+    line(0, 0, 0, e);
+    translate(0, e);
+    roots(e, r);
+    popMatrix(); 
   }
 }
